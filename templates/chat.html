@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Green Energy Bot</title>
+    <link rel="stylesheet" href="/static/chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <div class="header-content">
+                <a href="/" class="back-button">← Back to Home</a>
+                <h1>🌱 Green Energy Chatbot</h1>
+                <p>Your AI guide to renewable energy and sustainability</p>
+            </div>
+        </header>
+
+        <div class="chat-main">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-avatar">🌱</div>
+                    <div class="message-content">
+                        <div class="message-text">
+                            Hello! 🌱 Welcome to the Renewable Energy Chatbot! I'm here to help you learn about green energy, sustainable solutions, and the future of renewable power. What would you like to know about renewable energy today?
+                        </div>
+                        <div class="message-time">Just now</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <form id="chatForm" class="chat-form">
+                    <div class="input-wrapper">
+                        <textarea 
+                            id="userInput" 
+                            name="user_input" 
+                            placeholder="Ask me anything about renewable energy..." 
+                            required
+                            rows="1"
+                        ></textarea>
+                        <button type="submit" class="send-button">
+                            <span>Send</span>
+                            <div class="send-icon">➤</div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="quick-questions">
+            <h3>Quick Questions:</h3>
+            <div class="question-buttons">
+                <button class="quick-question" data-question="What is solar energy?">What is solar energy?</button>
+                <button class="quick-question" data-question="How does wind energy work?">How does wind energy work?</button>
+                <button class="quick-question" data-question="What are the benefits of renewable energy?">Benefits of renewable energy</button>
+                <button class="quick-question" data-question="How can I make my home more energy efficient?">Energy efficiency tips</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/static/chat.js"></script>
+</body>
+</html> 

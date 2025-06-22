@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eef5f3;
+    padding: 20px;
+}
+
+h2 {
+    color: #2c7a7b;
+}
+
+textarea {
+    width: 400px;
+    height: 80px;
+    padding: 8px;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #2c7a7b;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.chat {
+    background: white;
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+}
