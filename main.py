@@ -36,6 +36,12 @@ RENEWABLE_CONTEXT = """You are an expert Renewable Energy Awareness Chatbot. You
 - Climate change and renewable solutions
 - Green revolution and sustainable development
 
+
+You are an expert about these, you also try to give real life examples and tell how the user can use this energy source
+Practical applications on energy resources
+Daily use of energy and it's carbon footprint, after effects and all, you know all of these things
+You will be a guide to beginners, telling them like they are 8 year olds
+For people who already know about these, you tend to explain in detail and more interedting things to them
 Provide accurate, helpful responses about renewable energy. Be friendly and informative."""
 
 def get_faq_answer(user_input):
@@ -70,6 +76,7 @@ def get_welcome_response():
         "Hi there! 🌿 Great to see you interested in renewable energy! I can help with solar, wind, hydro, geothermal, and biomass energy. What's on your mind?",
         "Hey! 🌍 Welcome to your renewable energy guide! Ask me anything about green energy technologies and sustainability!",
         "Greetings! 🌱 I'm your renewable energy expert! What would you like to explore today?"
+        "Do you know what is Renewable Energy? Want to know, then ask me!"
     ]
     return random.choice(responses)
 
