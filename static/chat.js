@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatMessages = document.getElementById('chatMessages');
     const sendButton = document.querySelector('.send-button');
     const quickQuestions = document.querySelectorAll('.quick-question');
+    
+    // Session management - NEW
+    let sessionId = localStorage.getItem('chatSessionId') || null;
 
     // Auto-resize textarea
     userInput.addEventListener('input', function() {
@@ -15,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
     chatForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         const message = userInput.value.trim();
-        
         if (!message) return;
 
         // Add user message
@@ -30,6 +32,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Send request to server
             const formData = new FormData();
             formData.append('user_input', message);
+            
+            // Include session ID if available - NEW
+            if (sessionId) {
+                formData.append('session_id', sessionId);
+            }
 
             const response = await fetch('/api/chat', {
                 method: 'POST',
@@ -37,6 +44,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             const data = await response.json();
+
+            // Store session ID for future requests - NEW
+            if (data.session_id) {
+                sessionId = data.session_id;
+                localStorage.setItem('chatSessionId', sessionId);
+            }
 
             // Remove typing indicator
             removeTypingIndicator();
@@ -74,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const messageText = document.createElement('div');
         messageText.className = 'message-text';
+        
         if (sender === 'bot') {
             messageText.innerHTML = marked.parse(text);
         } else {
@@ -88,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
         content.appendChild(messageTime);
         messageDiv.appendChild(avatar);
         messageDiv.appendChild(content);
-
         chatMessages.appendChild(messageDiv);
         scrollToBottom();
     }
@@ -109,15 +122,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const typingIndicator = document.createElement('div');
         typingIndicator.className = 'typing-indicator';
         typingIndicator.innerHTML = `
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
+            <span></span>
+            <span></span>
+            <span></span>
         `;
 
         content.appendChild(typingIndicator);
         typingDiv.appendChild(avatar);
         typingDiv.appendChild(content);
-
         chatMessages.appendChild(typingDiv);
         scrollToBottom();
     }
@@ -135,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const now = new Date();
         return now.toLocaleTimeString('en-US', { 
             hour: '2-digit', 
-            minute: '2-digit',
+            minute: '2-digit', 
             hour12: true 
         });
     }
@@ -160,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initial state
     sendButton.disabled = true;
-
     // Focus on input when page loads
     userInput.focus();
-}); 
+});
